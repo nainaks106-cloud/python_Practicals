@@ -58,7 +58,7 @@ firstName = "Priya"   # camelCase (works but not Pythonic)
 first_name = "Priya"  # snake_case (recommended in Python)
 
 # INVALID
-2name = "error"       # cannot start with number
+#2name = "error"       # cannot start with number
 my-var = "error"      # hyphens not allowed
 class = "error"       # reserved keyword
 
@@ -97,3 +97,169 @@ bool("")    #false
 bool(None)  #false
 bool([])    #false
 
+
+#Phase 1 — Topic 2: Operators
+#Operators are symbols that perform operations on variables and values. Python has 7 types of operators.
+#1. Arithmetic Operators
+#Used for mathematical calculation
+
+a = 10
+b = 3
+
+print(a + b)   # 13  → Addition
+print(a - b)   # 7   → Subtraction
+print(a * b)   # 30  → Multiplication
+print(a / b)   # 3.3333 → Division (always returns float)
+print(a // b)  # 3   → Floor Division (removes decimal)
+print(a % b)   # 1   → Modulus (remainder)
+print(a ** b)  # 1000 → Exponentiation (10 to the power 3)
+
+#Tip — Modulus real use cases:
+# Check if number is even or odd
+number = 17
+print(number % 2 == 0)  # False → odd
+
+# Check if divisible by 5
+print(25 % 5 == 0)  # True
+
+#2. Comparison Operators
+#Always return True or False
+a = 10
+b = 20
+
+print(a == b)   # False → equal to
+print(a != b)   # True  → not equal to
+print(a > b)    # False → greater than
+print(a < b)    # True  → less than
+print(a >= b)   # False → greater than or equal
+print(a <= b)   # True  → less than or equal
+
+#3. Logical Operators
+#Combine multiple conditions together.
+age = 25
+salary = 50000
+
+# and → both conditions must be True
+print(age > 18 and salary > 30000)   # True
+
+# or → at least one condition must be True
+print(age > 18 or salary > 100000)   # True
+
+# not → reverses the result
+print(not(age > 18))                 # False
+
+#Real use case
+is_logged_in = True
+is_admin = False
+
+# User can view page if logged in
+# User can delete only if admin
+print("Can view:", is_logged_in)
+print("Can delete:", is_logged_in and is_admin)
+
+#4. Assignment Operators
+#Shorthand for updating variable values
+x = 10
+
+x += 5    # same as x = x + 5  → 15
+x -= 3    # same as x = x - 3  → 12
+x *= 2    # same as x = x * 2  → 24
+x /= 4    # same as x = x / 4  → 6.0
+x //= 2   # same as x = x // 2 → 3.0
+x **= 3   # same as x = x ** 3 → 27.0
+x %= 5    # same as x = x % 5  → 2.0
+
+#5. Identity Operators
+#Check if two variables point to the same object in memory (not just equal value)
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)   # True  → same value
+print(a is b)   # False → different objects in memory
+print(a is c)   # True  → c points to same object as a
+
+print(a is not b)  # True
+
+# Key difference:
+x = 10
+y = 10
+print(x is y)   # True → Python caches small integers (-5 to 256)
+
+x = 1000
+y = 1000
+print(x is y)   # False → large integers not cached
+
+#6. Membership Operators
+#Check if a value exists inside a sequence.
+fruits = ["apple", "mango", "banana"]
+
+print("mango" in fruits)      # True
+print("grape" in fruits)      # False
+print("grape" not in fruits)  # True
+
+# Works on strings too
+name = "Rahul"
+print("R" in name)      # True
+print("z" not in name)  # True
+
+#7. Bitwise Operators
+#Work on binary representation of numbers. (Used in DSA and systems programming)
+a = 5   # binary: 0101
+b = 3   # binary: 0011
+
+print(a & b)   # 1  → AND  (0001)
+print(a | b)   # 7  → OR   (0111)
+print(a ^ b)   # 6  → XOR  (0110)
+print(~a)      # -6 → NOT
+print(a << 1)  # 10 → Left shift  (1010)
+print(a >> 1)  # 2  → Right shift (0010)
+
+
+
+## Operator Precedence (PEMDAS style)
+#Python evaluates in this order — highest to lowest:
+
+#1. ()         → Parentheses
+#2. **         → Exponentiation
+##3. ~, +, -    → Unary operators
+#4. *, /, //, %→ Multiplication, Division
+#5. +, -       → Addition, Subtraction
+#6. <<, >>     → Bitwise shift
+#7. &          → Bitwise AND
+#8. ^          → Bitwise XOR
+#9. |          → Bitwise OR
+#10. ==, !=, >, <, >=, <=, is, in → Comparisons
+#11. not        → Logical NOT
+#12. and        → Logical AND
+#13. or         → Logical OR
+
+#Example:
+result = 2 + 3 * 4 ** 2 - 1
+# Step 1: 4 ** 2 = 16
+# Step 2: 3 * 16 = 48
+# Step 3: 2 + 48 = 50
+# Step 4: 50 - 1 = 49
+print(result)  # 49
+
+# Always use parentheses to be explicit
+result = (2 + 3) * (4 ** 2) - 1  # 79
+
+#Practice Exercises
+
+#Write a program that takes your monthly salary and calculates yearly salary, tax (20%), and take-home pay using arithmetic operators.
+Monthly_salary = int(input("Enter your monthly salary: "))
+Yearly_salary = Monthly_salary * 12
+Tax = Yearly_salary * 20/100
+Total_salary = Yearly_salary - Tax 
+print("Total salary:", Total_salary)
+
+
+#Check if a number is divisible by both 3 and 5 using logical and modulus operators.
+
+
+#A user can get a discount if their cart value is above 500 OR they are a premium member. Write the condition using logical operators.
+
+
+
+#What is the result of 10 // 3 * 2 + 1? Solve manually then verify
