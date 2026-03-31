@@ -35,7 +35,7 @@ print(type("hello"))   # <class 'str'>
 print(type(True))      # <class 'bool'>
 print(type(None))      # <class 'NoneType'>
 
-Type Casting (converting types)
+#Type Casting (converting types)
 x = "100"
 y = int(x)       # str → int → 100
 z = float(x)     # str → float → 100.0
@@ -160,7 +160,6 @@ print("Can delete:", is_logged_in and is_admin)
 #4. Assignment Operators
 #Shorthand for updating variable values
 x = 10
-
 x += 5    # same as x = x + 5  → 15
 x -= 3    # same as x = x - 3  → 12
 x *= 2    # same as x = x * 2  → 24
@@ -203,7 +202,7 @@ name = "Rahul"
 print("R" in name)      # True
 print("z" not in name)  # True
 
-#7. Bitwise Operators
+# 7. Bitwise Operators
 #Work on binary representation of numbers. (Used in DSA and systems programming)
 a = 5   # binary: 0101
 b = 3   # binary: 0011
@@ -256,10 +255,22 @@ print("Total salary:", Total_salary)
 
 
 #Check if a number is divisible by both 3 and 5 using logical and modulus operators.
-
+number = int(input("Enter a number"))
+if number %3 == 0 and number %5 == 0:
+    print("Number is divisible by 3 and 5")
+else:
+    print("Number not divisible by 3 and 5")
 
 #A user can get a discount if their cart value is above 500 OR they are a premium member. Write the condition using logical operators.
+cart_value = float(input("Enter cart value: "))
+is_premium = input("Are you a premium member? (yes/no): ").lower() == "yes"
 
-
+# Condition for discount
+if cart_value > 500 or is_premium:
+    print("User gets a discount")
+else:
+    print("User does NOT get a discount")
 
 #What is the result of 10 // 3 * 2 + 1? Solve manually then verify
+print(10//3*2+1)
+
