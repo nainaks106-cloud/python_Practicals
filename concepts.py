@@ -274,3 +274,349 @@ else:
 #What is the result of 10 // 3 * 2 + 1? Solve manually then verify
 print(10//3*2+1)
 
+#Topic 3: Control Flow (if, elif, else)
+#Control flow lets your program make decisions and execute different code based on conditions.
+
+#Basic if Statement
+#Run code only if condition is True.
+
+age = 20
+
+if age >= 18:
+    print("You are an adult")
+
+# Indentation is mandatory in Python — use 4 spaces
+# WRONG
+#   if age >= 18:
+#   print("Adult")   # IndentationError
+
+# CORRECT
+if age >= 18:
+    print("Adult")
+
+#if-else Statement
+# Run one block if True, another if False.
+age = 15
+
+if age >= 18:
+    print("You can vote")
+else:
+    print("You cannot vote yet")
+
+#if-elif-else Statement
+#Check multiple conditions in sequence.
+marks = 75
+
+if marks >= 90:
+    print("Grade: A")
+elif marks >= 80:
+    print("Grade: B")
+elif marks >= 70:
+    print("Grade: C")
+elif marks >= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")
+
+# Important — Python checks top to bottom and stops at first True condition
+marks = 95
+
+if marks >= 70:
+    print("Grade: C")   # This runs even for 95!
+elif marks >= 90:
+    print("Grade: A")   # This never gets checked
+# Always order from most specific to least specific
+
+# Nested if Statements
+# if inside another if.
+
+age = 25
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("Entry allowed")
+    else:
+        print("Bring your ID")
+else:
+    print("You are underage")
+
+#Ternary Expression (one-liner if-else)
+#Short form for simple conditions.
+
+age = 20
+
+# Normal way
+if age >= 18:
+    status = "Adult"
+else:
+    status = "Minor"
+
+# Ternary way (value_if_true if condition else value_if_false)
+status = "Adult" if age >= 18 else "Minor"
+print(status)
+
+# More examples
+number = -5
+sign = "Positive" if number > 0 else "Negative or Zero"
+
+marks = 80
+result = "Pass" if marks >= 50 else "Fail"
+
+#Truthy and Falsy Values
+#Python treats certain values as False automatically.
+# These are all FALSY (treated as False)
+print(bool(0))       # False
+print(bool(0.0))     # False
+print(bool(""))      # False → empty string
+print(bool([]))      # False → empty list
+print(bool({}))      # False → empty dict
+print(bool(None))    # False
+
+# Everything else is TRUTHY
+print(bool(1))       # True
+print(bool(-5))      # True
+print(bool("hi"))    # True
+print(bool([1,2]))   # True
+
+Real use case:
+
+name = ""
+
+if name:
+    print(f"Hello, {name}")
+else:
+    print("Name is empty")   # This runs
+
+# Combining Conditions
+age = 25
+income = 50000
+credit_score = 750
+
+# Loan eligibility check
+if age >= 21 and income >= 30000 and credit_score >= 700:
+    print("Loan approved")
+else:
+    print("Loan rejected")
+
+# Discount eligibility
+is_member = True
+cart_value = 300
+
+if cart_value >= 500 or is_member:
+    print("Discount applied")
+else:
+    print("No discount")
+
+#match Statement (Python 3.10+)
+#Similar to switch-case in other languages.
+day = "Monday"
+
+match day:
+    case "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday":
+        print("Weekday")
+    case "Saturday" | "Sunday":
+        print("Weekend")
+    case _:
+        print("Invalid day")
+
+#Real World Examples
+#ATM System:
+
+balance = 10000
+withdrawal = 5000
+pin_correct = True
+
+if not pin_correct:
+    print("Wrong PIN. Access denied.")
+elif withdrawal > balance:
+    print("Insufficient balance.")
+elif withdrawal <= 0:
+    print("Invalid amount.")
+else:
+    balance -= withdrawal
+    print(f"Please collect Rs.{withdrawal}")
+    print(f"Remaining balance: Rs.{balance}")
+
+# BMI Calculator:
+weight = 70   # kg
+height = 1.75  # meters
+
+bmi = weight / (height ** 2)
+print(f"BMI: {bmi:.2f}")
+
+if bmi < 18.5:
+    print("Underweight")
+elif bmi < 25:
+    print("Normal weight")
+elif bmi < 30:
+    print("Overweight")
+else:
+    print("Obese")  
+
+#Ah! That :.2f is part of Python’s f-string formatting, and it controls how the number is displayed. Let me explain carefully:
+#bmi → some floating-point number (e.g., 23.456789)
+#f"{bmi:.2f}" → formats the number to 2 decimal places
+#Breaking down :.2f
+## :	Start of formatting spec
+#  .2	Number of decimal places (2 in this case)
+#  f	Fixed-point notation (decimal number)
+
+
+#Practice Exercises
+
+#Write a program that checks if a number is positive, negative, or zero.
+num = int(input("Enter a number: "))
+if num > 0:
+    print("Number is positive")
+elif num< 0:
+    print("number is negative")
+else:
+    print("Number is zero")
+
+
+#Build a simple login system — check if username is "admin" AND password is "1234". Show appropriate messages.
+# Simple login system
+username = input("Enter username: ")
+password = input("Enter password: ")
+
+if username == "admin" and password == "1234":
+    print("Login successful! ✅")
+else:
+    print("Invalid username or password ❌")
+
+
+#A shop gives discounts — 20% if bill > 2000, 10% if bill > 1000, no discount otherwise. Calculate final bill.
+bill_amount = int(input("enter your bill amount"))
+
+if bill_amount > 2000:
+   discount = bill_amount*0.20
+   print("discount =", discount )
+elif bill_amount >1000:
+    discount = bill_amount *0.20
+    print("discount =", discount)
+else:
+    print("no discount")
+
+#Write a program that takes marks of 5 subjects and checks if student passed (each subject minimum 35, total minimum 200).
+marks =[]
+for i in range (1,6):
+    num = int(input(f"enter marks of subject {i}:"))
+    marks.append(num)
+total_marks = sum(marks)
+if all(marks >= 35 for mark in marks and total_marks >200):
+   print("student is passed")
+else:
+    print("Student is failed")
+
+# Phase -1 : topic - 4 : loops
+# loops let you repeat a block of code multiple times without writing code again and again
+# python has 2 types of loop - for and while loop
+# 
+# for loop: used when you know how many times to repeat or when iterating over a sequence
+# 
+#loop over a list
+fruits = ["apple","banana","strawberry"]
+for fruit in fruits:
+    print(fruit)
+
+# range() function
+# range generates a sequence of numbers most commonly used in loops
+#range(stop)               # 0 to stop-1
+#range(start, stop)        # start to stop-1
+#range(start, stop, step)  # with step
+
+#basic range
+for i in range (5):
+    print(i)         # 0 1 2 3 4 
+
+#custome start    _ by default it starts from zero
+for i in range (1,6):     # 1 2 3 4 5
+    print(i)
+
+#step
+for i in range (1,6,2):    # 1 3 5
+    print(i)
+
+# looping over string
+name = "Rahul"
+for char in name:
+    print(char)
+
+#while loop
+# used when you dont known how many times to repeat - runs until conditions becomes fault
+count = 1
+
+while count <= 5:
+    print(count)
+    count += 1      # very important — without this it runs forever
+
+# 1 2 3 4 5
+
+# infinite loop - be careful
+#this runs forever never do it accidently
+# This runs forever — never do this accidentally
+while True:
+    print("running")   # Ctrl+C to stop
+
+# Useful infinite loop with break
+while True:
+    password = input("Enter password: ")
+    if password == "secret123":
+        print("Access granted")
+        break
+    print("Wrong password, try again")
+
+# Break statement  - immediately exixt the group
+for i in range(1, 11):
+    if i == 6:
+        break
+    print(i)
+
+# 1 2 3 4 5 → stops at 6
+
+# countinue statement - skips the current iteration and move to next
+for i in range(1, 11):
+    if i % 2 == 0:
+        continue       # skip even numbers
+    print(i)
+
+# 1 3 5 7 9
+
+# pass statement - does nothing use as a place holder
+for i in range(5):
+    pass    # TODO: add logic later
+            # no error, just empty loop
+
+#else with Loops
+#Runs when loop completes without hitting break
+# Search for a number
+numbers = [1, 3, 5, 7, 9]
+target = 6
+
+for num in numbers:
+    if num == target:
+        print("Found!")
+        break
+else:
+    print("Not found")    # runs because break never hit
+
+# Output: Not found 
+
+#Nested Loops
+#Loop inside a loop
+# Multiplication table
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i*j}")
+    print("---")
+
+# 1 x 1 = 1
+# 1 x 2 = 2
+# 1 x 3 = 3
+# ---
+# 2 x 1 = 2
+
+# ...
+
+#Pattern printing 
